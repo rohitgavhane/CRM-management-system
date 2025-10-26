@@ -1,5 +1,5 @@
-const User = require('../models/user');
-const Role = require('../models/role');
+const User = require('../models/User');
+const Role = require('../models/Role');
 
 // @route   POST /api/users
 // @desc    Create a new user (Admin-only)

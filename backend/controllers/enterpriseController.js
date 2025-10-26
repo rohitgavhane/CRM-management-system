@@ -1,4 +1,4 @@
-const Enterprise = require('../models/enterprise');
+const Enterprise = require('../models/Enterprise');
 
 // @route   POST /api/enterprises
 // @desc    Create a new enterprise
