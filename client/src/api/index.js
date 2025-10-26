@@ -1,7 +1,7 @@
-// --- Global Config ---
+
 const API_URL = 'http://localhost:3000/api';
 
-// --- Lib: api.js ---
+
 export const api = {
   request: async (method, endpoint, body = null, token) => {
     const url = `${API_URL}${endpoint}`;

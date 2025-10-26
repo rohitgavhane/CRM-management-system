@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '../ui/Button';
+import { Button } from '../components/ui/Button';
 import { Menu } from 'lucide-react';
 
 const Navbar = ({ isSidebarOpen, setIsSidebarOpen, pageTitle }) => {
@@ -15,7 +15,7 @@ const Navbar = ({ isSidebarOpen, setIsSidebarOpen, pageTitle }) => {
         </Button>
         <h1 className="text-xl font-semibold ml-4">{pageTitle}</h1>
       </div>
-      {/* Other navbar items like notifications or user menu can go here */}
+
     </div>
   );
 };

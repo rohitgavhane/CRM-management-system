@@ -4,20 +4,18 @@ const User = require('./models/User');
 const Role = require('./models/Role');
 const connectDB = require('./config/db');
 
-// Connect to DB
+
 connectDB();
 
 const seedData = async () => {
   try {
-    // Clear existing data
+   
     await Role.deleteMany({});
     await User.deleteMany({});
 
     console.log('Data Cleared...');
 
-    // --- Create Roles ---
 
-    // 1. Admin Role (all permissions)
     const allPermissions = {
       users: { create: true, read: true, update: true, delete: true },
       roles: { create: true, read: true, update: true, delete: true },
