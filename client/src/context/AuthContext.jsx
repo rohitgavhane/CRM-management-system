@@ -1,4 +1,5 @@
 import React, { useState, useEffect, createContext } from 'react';
+import { api } from '../api/index.js'; 
 
 export const AuthContext = createContext(null);
 
@@ -8,7 +9,7 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  // Set default theme to dark
+
   useEffect(() => {
     document.documentElement.classList.add('dark');
   }, []);
@@ -16,19 +17,23 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     if (token) {
       try {
-        // Decode token
+
         const payload = JSON.parse(atob(token.split('.')[1]));
         
-        // Check if token is expired
+     
         if (payload.exp * 1000 < Date.now()) {
-          logout(); // Token is expired, log out
+          logout(); 
         } else {
           setUser(payload.user);
           setIsAuthenticated(true);
+
+          if (api?.defaults?.headers?.common) {
+            api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+          }
         }
       } catch (error) {
         console.error('Failed to decode token:', error);
-        logout(); // Invalid token, log out
+        logout(); 
       }
     }
     setLoading(false);
@@ -36,18 +41,25 @@ export const AuthProvider = ({ children }) => {
 
   const login = (newToken) => {
     localStorage.setItem('token', newToken);
+
+    if (api?.defaults?.headers?.common) {
+      api.defaults.headers.common['Authorization'] = `Bearer ${newToken}`;
+    }
     setToken(newToken);
   };
 
   const logout = () => {
     localStorage.removeItem('token');
+
+    if (api?.defaults?.headers?.common) {
+      delete api.defaults.headers.common['Authorization'];
+    }
     setToken(null);
     setUser(null);
     setIsAuthenticated(false);
   };
 
-  // Helper function to check permissions
-  // Usage: const can = useCan(); if (can('users', 'create')) { ... }
+
   const useCan = () => (module, action) => {
     return user?.permissions?.[module]?.[action] || false;
   };
@@ -59,10 +71,10 @@ export const AuthProvider = ({ children }) => {
     loading,
     login,
     logout,
-    useCan, // Expose the function generator
+    useCan, 
   };
 
-  // Show a loading screen while checking auth
+
   if (loading) {
     return (
       <div className="flex items-center justify-center h-screen bg-background text-foreground">
@@ -77,4 +89,3 @@ export const AuthProvider = ({ children }) => {
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
-

@@ -1,8 +1,5 @@
 const Product = require('../models/Product');
 
-// @route   POST /api/products
-// @desc    Create a new product
-// @access  Private
 exports.createProduct = async (req, res) => {
   const { name, price, status } = req.body;
   try {
@@ -15,9 +12,6 @@ exports.createProduct = async (req, res) => {
   }
 };
 
-// @route   GET /api/products
-// @desc    Get all products
-// @access  Private
 exports.getAllProducts = async (req, res) => {
   try {
     const products = await Product.find();
@@ -28,9 +22,7 @@ exports.getAllProducts = async (req, res) => {
   }
 };
 
-// @route   GET /api/products/:id
-// @desc    Get a single product
-// @access  Private
+
 exports.getProductById = async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
@@ -44,9 +36,7 @@ exports.getProductById = async (req, res) => {
   }
 };
 
-// @route   PUT /api/products/:id
-// @desc    Update a product
-// @access  Private
+
 exports.updateProduct = async (req, res) => {
   const { name, price, status } = req.body;
   try {
@@ -66,9 +56,7 @@ exports.updateProduct = async (req, res) => {
   }
 };
 
-// @route   DELETE /api/products/:id
-// @desc    Delete a product
-// @access  Private
+
 exports.deleteProduct = async (req, res) => {
   try {
     let product = await Product.findById(req.params.id);

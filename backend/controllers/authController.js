@@ -3,9 +3,7 @@ const Role = require('../models/Role');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-// @route   POST /api/auth/register
-// @desc    Register a new user
-// @access  Public (for now, will be Admin-only. Used to create default users)
+
 exports.register = async (req, res) => {
   const { username, email, password } = req.body;
 

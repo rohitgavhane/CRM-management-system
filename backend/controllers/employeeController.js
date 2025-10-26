@@ -1,8 +1,6 @@
 const Employee = require('../models/Employee');
 
-// @route   POST /api/employees
-// @desc    Create a new employee
-// @access  Private
+
 exports.createEmployee = async (req, res) => {
   const { name, department, salary, enterprise } = req.body;
   try {
@@ -15,9 +13,7 @@ exports.createEmployee = async (req, res) => {
   }
 };
 
-// @route   GET /api/employees
-// @desc    Get all employees
-// @access  Private
+
 exports.getAllEmployees = async (req, res) => {
   try {
     const employees = await Employee.find().populate('enterprise', 'name');
@@ -28,9 +24,6 @@ exports.getAllEmployees = async (req, res) => {
   }
 };
 
-// @route   GET /api/employees/:id
-// @desc    Get a single employee
-// @access  Private
 exports.getEmployeeById = async (req, res) => {
   try {
     const employee = await Employee.findById(req.params.id).populate('enterprise', 'name');
@@ -44,9 +37,7 @@ exports.getEmployeeById = async (req, res) => {
   }
 };
 
-// @route   PUT /api/employees/:id
-// @desc    Update an employee
-// @access  Private
+
 exports.updateEmployee = async (req, res) => {
   const { name, department, salary, enterprise } = req.body;
   try {
@@ -70,9 +61,7 @@ exports.updateEmployee = async (req, res) => {
   }
 };
 
-// @route   DELETE /api/employees/:id
-// @desc    Delete an employee
-// @access  Private
+
 exports.deleteEmployee = async (req, res) => {
   try {
     let employee = await Employee.findById(req.params.id);

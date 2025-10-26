@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useAuth } from '../../hooks/useAuth';
-import { Button } from '../ui/Button';
-import { cn } from '../ui/cn';
+import { useAuth } from '../hooks/useAuth';
+import { Button } from '../components/ui/Button';
+import { cn } from '../components/ui/cn';
 import {
   Users,
   Shield,
@@ -39,7 +39,7 @@ const Sidebar = ({ isSidebarOpen, currentPage }) => {
         isSidebarOpen ? 'w-64' : 'w-20'
       )}
     >
-      <div className="flex items-center p-4 h-16 border-b border-border">
+      <div className="flex items-center justify-center p-4 h-16 border-b border-border">
         <span
           className={cn("font-bold text-xl", !isSidebarOpen && 'hidden')}
         >
@@ -51,15 +51,15 @@ const Sidebar = ({ isSidebarOpen, currentPage }) => {
         {allowedNavItems.map((item) => (
           <Button
             key={item.name}
-            asChild // Use asChild to pass props to Link
+            asChild 
             variant={currentPage.startsWith(item.path) ? "secondary" : "ghost"}
             className={cn(
-              "flex w-full justify-start px-6 py-4 h-auto text-base",
-              !isSidebarOpen && 'justify-center'
+              "flex items-center w-full justify-start px-6 py-4 h-auto text-base",
+              !isSidebarOpen && 'justify-center px-0'
             )}
           >
-            <Link to={item.path}>
-              <item.icon size={20} />
+            <Link to={item.path} className="flex items-center w-full">
+              <item.icon size={20} className="flex-shrink-0" />
               <span className={cn("ml-4", !isSidebarOpen && 'hidden')}>
                 {item.label}
               </span>
@@ -70,9 +70,12 @@ const Sidebar = ({ isSidebarOpen, currentPage }) => {
 
       <div className="p-4 border-t border-border">
         <div
-          className={cn("flex items-center", !isSidebarOpen && 'justify-center')}
+          className={cn(
+            "flex items-center mb-4",
+            !isSidebarOpen ? 'justify-center' : 'px-2'
+          )}
         >
-          <User size={24} />
+          <User size={24} className="flex-shrink-0" />
           <div className={cn("ml-3", !isSidebarOpen && 'hidden')}>
             <p className="text-sm font-medium">
               {user?.username}
@@ -84,11 +87,11 @@ const Sidebar = ({ isSidebarOpen, currentPage }) => {
           variant="ghost"
           onClick={logout}
           className={cn(
-            "flex items-center w-full justify-start px-6 py-3 mt-4 h-auto",
-            !isSidebarOpen && 'justify-center'
+            "flex items-center w-full justify-start px-6 py-3 h-auto",
+            !isSidebarOpen && 'justify-center px-0'
           )}
         >
-          <LogOut size={20} />
+          <LogOut size={20} className="flex-shrink-0" />
           <span className={cn("ml-4", !isSidebarOpen && 'hidden')}>Logout</span>
         </Button>
       </div>

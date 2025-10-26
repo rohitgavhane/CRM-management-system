@@ -1,8 +1,6 @@
 const Role = require('../models/Role');
 
-// @route   POST /api/roles
-// @desc    Create a new role
-// @access  Private (Admin)
+
 exports.createRole = async (req, res) => {
   const { name, permissions } = req.body;
 
@@ -25,9 +23,7 @@ exports.createRole = async (req, res) => {
   }
 };
 
-// @route   GET /api/roles
-// @desc    Get all roles
-// @access  Private (Admin)
+
 exports.getAllRoles = async (req, res) => {
   try {
     const roles = await Role.find();
@@ -38,9 +34,6 @@ exports.getAllRoles = async (req, res) => {
   }
 };
 
-// @route   GET /api/roles/:id
-// @desc    Get a single role by ID
-// @access  Private (Admin)
 exports.getRoleById = async (req, res) => {
   try {
     const role = await Role.findById(req.params.id);
@@ -54,9 +47,7 @@ exports.getRoleById = async (req, res) => {
   }
 };
 
-// @route   PUT /api/roles/:id
-// @desc    Update a role's permissions
-// @access  Private (Admin)
+
 exports.updateRole = async (req, res) => {
   const { name, permissions } = req.body;
 
@@ -77,9 +68,7 @@ exports.updateRole = async (req, res) => {
   }
 };
 
-// @route   DELETE /api/roles/:id
-// @desc    Delete a role
-// @access  Private (Admin)
+
 exports.deleteRole = async (req, res) => {
   try {
     let role = await Role.findById(req.params.id);
@@ -93,7 +82,7 @@ exports.deleteRole = async (req, res) => {
     }
 
     // Add check: Make sure no users are assigned this role before deleting
-    const User = require('../models/user');
+    const User = require('../models/User');
     const userCount = await User.countDocuments({ role: req.params.id });
     if (userCount > 0) {
       return res.status(400).json({ msg: 'Cannot delete role. Users are still assigned this role.' });

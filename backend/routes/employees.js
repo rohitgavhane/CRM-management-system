@@ -3,7 +3,7 @@ const router = express.Router();
 const employeeController = require('../controllers/employeeController');
 const { verifyToken, checkPermission } = require('../middleware/auth');
 
-// Apply middleware to all employee routes
+
 router.use(verifyToken);
 
 router.post(
