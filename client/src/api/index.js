@@ -1,5 +1,5 @@
 
-const API_URL = 'https://crm-management-system-2.onrender.com';
+const API_URL = 'https://crm-management-system-2.onrender.com/api';
 
 
 export const api = {
