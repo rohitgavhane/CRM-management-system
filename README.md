@@ -1,4 +1,4 @@
-MERN Stack Role-Based Access Control System with Enterprise Management
+<img width="1024" height="1024" alt="Gemini_Generated_Image_azcmt6azcmt6azcm" src="https://github.com/user-attachments/assets/9ce045b5-379b-4964-975b-71245d2a2ef5" />MERN Stack Role-Based Access Control System with Enterprise Management(https://role-management-system-app.vercel.app/)
 
 This project is a full-stack Role-Based Access Control (RBAC) system built with the MERN stack (MongoDB, Express, React, Node.js). It features a secure backend with JWT authentication and a modern, responsive frontend built with React and shadcn/ui.
 
